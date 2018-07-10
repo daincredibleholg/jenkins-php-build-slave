@@ -6,8 +6,6 @@ ENV WORK_DIR="/var/jenkins"
 ENV JENKINS_SECRET=""
 ENV DEBIAN_FRONTEND noninteractive
 
-VOLUME /var/jenkins
-
 USER root
 RUN apt-get update \
     && apt-get -y dist-upgrade \
@@ -23,12 +21,15 @@ RUN cd /tmp \
     && chmod +x /etc/profile.d/openjdk.sh
 
 RUN mkdir -p /var/jenkins \
-    && chown jenkins:jenkins /var/jenkins
+    && chown -R jenkins:jenkins /var/jenkins \
+    && chmod -R g+rwxs /var/jenkins
 
 COPY --chown=jenkins run-jenkins.sh /home/jenkins/
 
 RUN chmod +x /home/jenkins/run-jenkins.sh
 
 USER jenkins
+VOLUME /var/jenkins
+
 CMD [ "/home/jenkins/run-jenkins.sh" ]
 
