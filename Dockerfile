@@ -9,7 +9,7 @@ ENV DEBIAN_FRONTEND noninteractive
 USER root
 RUN apt-get update \
     && apt-get -y dist-upgrade \
-    && apt-get install -y php5-cli php5-common php5-curl php5-fpm php5-gd php5-imagick php5-mcrypt php5-mysql curl bzip2 wget
+    && apt-get install -y php5-cli php5-common php5-curl php5-fpm php5-gd php5-imagick php5-mcrypt php5-mysql curl bzip2 wget git
 
 RUN cd /tmp \
     && wget https://download.java.net/java/GA/jdk10/10.0.1/fb4372174a714e6b8c52526dc134031e/10/openjdk-10.0.1_linux-x64_bin.tar.gz \

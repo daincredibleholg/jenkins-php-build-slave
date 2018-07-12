@@ -13,16 +13,13 @@ and run it.
 
 Here are the environment variables you should use:
 
-.Docker Image Environment Variables
-|===
-| Variable | Description | Example
 
-| JENKINS_MASTER | URL to your Jenkins master node | https://ci.company.com
-| COMPUTER_NAME | The node name, you want to use |  php5.3-build
-| JENKINS_SECRET | The secret this node needs to use to authenticate at the master node | b8c80148ce36de10c9358384fac9e28fbba941055a9a6ab2277e75ddc29a8744
-| WORK_DIR | Where to store the nodes working files. _Defaults_ to _/var/jenkins_ | /var/jenkins
-
-|===
+| Variable       | Description                                                          | Example                                                          |
+| -------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| JENKINS_MASTER | URL to your Jenkins master node                                      | https://ci.company.com                                           |
+| COMPUTER_NAME  | The node name, you want to use                                       | php5.3-build                                                     |
+| JENKINS_SECRET | The secret this node needs to use to authenticate at the master node | b8c80148ce36de10c9358384fac9e28fbba941055a9a6ab2277e75ddc29a8744 |
+| WORK_DIR       | Where to store the nodes working files. _Defaults_ to _/var/jenkins_ | /var/jenkins
 
 So, a run command could look like this:
 
