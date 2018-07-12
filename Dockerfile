@@ -18,7 +18,14 @@ RUN cd /tmp \
     && ln -s /opt/openjdk/jdk-10.0.1 /opt/openjdk/jdk-10 \
     && useradd -m -U -s /bin/bash jenkins \
     && echo -n "export JAVA_HOME=/opt/openjdk/jdk-10\nexport PATH=\"\$JAVA_HOME/bin:\$PATH\"" > /etc/profile.d/openjdk.sh \
-    && chmod +x /etc/profile.d/openjdk.sh
+    && chmod +x /etc/profile.d/openjdk.sh \
+    && rm /tmp/openjdk-10.0.1_linux-x64_bin.tar.gz
+
+RUN mkdir /opt/composer \
+    && wget https://getcomposer.org/installer -O /tmp/composer-installer.php \
+    && php /tmp/composer-installer.php --install-dir=/opt/composer \
+    && ln -s /opt/composer/composer.phar /usr/local/bin/composer \
+    && rm /tmp/composer-installer.php
 
 RUN mkdir -p /var/jenkins \
     && chown -R jenkins:jenkins /var/jenkins \
