@@ -7,7 +7,9 @@ ENV JENKINS_SECRET=""
 ENV DEBIAN_FRONTEND noninteractive
 
 USER root
-RUN apt-get update \
+RUN locale-gen en_GB.UTF-8 de_DE.UTF-8 \
+    && update-locale LANG=de_DE.UTF-8 \
+    && apt-get update \
     && apt-get -y dist-upgrade \
     && apt-get install -y php5-cli php5-common php5-curl php5-fpm php5-gd php5-imagick php5-mcrypt php5-mysql php5-xsl curl bzip2 wget git unzip software-properties-common python-software-properties \
     && add-apt-repository -y ppa:openjdk-r/ppa \
