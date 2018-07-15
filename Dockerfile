@@ -9,7 +9,7 @@ ENV DEBIAN_FRONTEND noninteractive
 USER root
 RUN apt-get update \
     && apt-get -y dist-upgrade \
-    && apt-get install -y php5-cli php5-common php5-curl php5-fpm php5-gd php5-imagick php5-mcrypt php5-mysql php5-xsl curl bzip2 wget git
+    && apt-get install -y php5-cli php5-common php5-curl php5-fpm php5-gd php5-imagick php5-mcrypt php5-mysql php5-xsl curl bzip2 wget git unzip
 
 RUN cd /tmp \
     && wget https://download.java.net/java/GA/jdk10/10.0.1/fb4372174a714e6b8c52526dc134031e/10/openjdk-10.0.1_linux-x64_bin.tar.gz \
@@ -26,6 +26,15 @@ RUN mkdir /opt/composer \
     && php /tmp/composer-installer.php --install-dir=/opt/composer \
     && ln -s /opt/composer/composer.phar /usr/local/bin/composer \
     && rm /tmp/composer-installer.php
+
+RUN mkdir /opt/sonar-scanner \
+    && cd /tmp \
+    && wget "https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.2.0.1227-linux.zip" \
+    && unzip sonar-scanner-cli-3.2.0.1227-linux.zip -d /opt/sonar-scanner \
+    && cd /opt/sonar-scanner \
+    && ln -s sonar-scanner-3.2.0.1227-linux current \
+    && ln /opt/sonar-scanner/current/bin/* /usr/local/bin/
+
 
 RUN mkdir -p /var/jenkins \
     && chown -R jenkins:jenkins /var/jenkins \
